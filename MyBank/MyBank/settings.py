@@ -36,16 +36,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'users.apps.UsersConfig',
     'MyBankRest',
+    #'users.apps.UsersConfig',
 
     'rest_framework.authtoken',
     'rest_auth',
     'django.contrib.sites',  # from offial docs, needed for registration
     'allauth',
-    # 'allauth.account',  # fixes bug with django_sites when running tests
+    'allauth.account',  # fixes bug with django_sites when running tests
     # https://github.com/pennersr/django-allauth/issues/1817
     'rest_auth.registration',
-    #'allauth.socialaccount',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +127,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+MEDIA_ROOT = '/vol/media'
+STATIC_ROOT = '/vol/static'
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -135,3 +141,16 @@ REST_FRAMEWORK = {
 }
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
