@@ -23,7 +23,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # override standard method to create cumster without pk in url
-        # https://stackoverflow.com/questions/38745280/\
+
         # in-drfdjango-rest-framework-null-value-in-column-author-id-violates-not-nul
         validated_data['user_id'] = self.context['request'].user.id
         return super(CustomerSerializer, self).create(validated_data)
@@ -32,7 +32,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 class ActionSerializer(serializers.ModelSerializer):
 
     # customer init to limit choises in browesble api
-    # https://stackoverflow.com/questions/15328632/dynamically-limiting-queryset-of-related-field/20679785
+
     # if not, all account will be visible in browesble api. that's a leak. bad.
 
     def __init__(self, *args, **kwargs):
@@ -49,8 +49,8 @@ class ActionSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # check if enough money to withdraw
         # mb it's better done by
-        # https://medium.com/profil-software-blog/10-\
-        # things-you-need-to-know-to-effectively-use-django-rest-framework-7db7728910e0
+
+
         if validated_data['account'].balance + validated_data['amount'] > 0:
             validated_data['account'].balance += validated_data['amount']
             validated_data['account'].save()
