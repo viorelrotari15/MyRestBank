@@ -24,7 +24,9 @@ SECRET_KEY = 'zbftzfw6^&swnxbekthe%-q)7)fo433a(mg19v-^@e(qjvug$('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "bank", 'localhost',
+]
 
 # Application definition
 
