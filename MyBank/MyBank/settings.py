@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = 'zbftzfw6^&swnxbekthe%-q)7)fo433a(mg19v-^@e(qjvug$('
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "bank", 'localhost',
+   # "bank", 'localhost',
 ]
 
 # Application definition
@@ -155,4 +156,6 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
+django_heroku.settings(locals())
 
